@@ -1,0 +1,26 @@
+Q: What happens when you type google.com in your browser?
+
+Upon typing "google.com" into the browser's address bar and pressing Enter, the browser initiates a series of steps to load the webpage:
+
+1. DNS Resolution: The browser needs to find the IP address associated with the domain name "google.com". It sends a DNS (Domain Name System) lookup request to a DNS server. If the IP address is not cached locally, the DNS server resolves the domain name to its corresponding IP address.
+
+2. HTTP Request Generation: Once the IP address is obtained, the browser generates an HTTP request to the resolved IP address, typically on port 80 for HTTP or port 443 for HTTPS. This request includes various headers such as `accept`, `user-agent`, `cookie`, etc., which provide information about the browser and its capabilities.
+
+3. HTTP Connection Establishment: The browser establishes a TCP connection to the web server at the resolved IP address. This involves a three-way handshake process to establish a reliable connection.
+
+4. Sending the Request: After the connection is established, the browser sends the HTTP request to the web server. The request typically includes the requested resource (in this case, the homepage of google.com) and any additional parameters or headers required.
+
+5. Receiving the Response: The web server processes the request and generates an HTTP response. This response includes response headers and a response body containing the requested content (e.g., HTML, CSS, JavaScript).
+
+6. Response Handling: The browser receives the HTTP response and begins processing it. It first parses the response headers to determine the status of the request (e.g., success, redirection, error). Depending on the status code and response headers, the browser may perform additional operations, such as following redirects or handling caching directives.
+
+7. Parsing and Rendering: If the request is successful (e.g., status code 200), the browser parses the HTML content in the response body. It constructs the Document Object Model (DOM) and renders the webpage based on the parsed HTML, CSS, and JavaScript. The rendering process involves laying out the content, applying styles, and executing JavaScript code to enhance interactivity.
+
+8. Loading Additional Resources: While parsing the HTML, the browser encounters references to additional resources such as images, stylesheets, and scripts. It initiates parallel requests to fetch these resources from the server.
+
+9. Rendering Completion: Once all resources are fetched and the rendering process is complete, the browser displays the fully rendered webpage to the user. The user can interact with the webpage, click links, submit forms, and perform other actions.
+
+10. Connection Closure: After rendering the webpage, the browser may keep the TCP connection open for a short period to facilitate subsequent requests or close the connection immediately, depending on factors such as connection keep-alive settings and server preferences.
+
+In summary, typing "google.com" in the browser triggers a sequence of events involving DNS resolution, HTTP request generation, communication with the web server, response handling, parsing, rendering, and resource loading, ultimately resulting in the display of the Google homepage to the user.
+
