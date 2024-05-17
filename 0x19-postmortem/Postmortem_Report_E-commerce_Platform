@@ -1,0 +1,50 @@
+Postmortem: Database Outage on E-commerce Platform
+Issue Summary
+Duration:
+Start: 2024-05-10 14:00 SAST
+End: 2024-05-10 16:30 SAST
+Impact:
+The database outage affected 85% of our e-commerce platform users. Customers were unable to complete purchases, access their accounts, or browse products. The issue resulted in an estimated loss of R50,000 in revenue and numerous customer complaints.
+Root Cause:
+The outage was caused by a misconfiguration in the database connection settings after a routine maintenance update, which led to connection saturation and eventual failure.
+Timeline
+14:00 - Issue detected: The monitoring system alerted the on-call engineer of high database error rates.
+14:05 - On-call engineer confirmed the alert and started investigating the database server logs.
+14:15 - Engineers assumed it was a network issue and began investigating network configurations.
+14:30 - Customer service reported a surge in complaints about the website being down.
+14:45 - Escalated to the database administration team.
+15:00 - Misleading debugging: Network configurations were found to be normal; focus shifted to recent changes.
+15:15 - Identified a recent maintenance update; suspect connection settings might be the issue.
+15:30 - Confirmed the connection misconfiguration in the database settings.
+15:45 - Implemented the fix by reverting to previous stable settings.
+16:00 - Database services gradually restored.
+16:30 - Full resolution: All services back to normal, monitoring system showed stable metrics.
+Root Cause and Resolution
+Root Cause:
+The root cause was traced to a recent maintenance update during which the database connection pool settings were misconfigured. Specifically, the maximum number of connections was set too low, leading to connection saturation as the number of concurrent requests exceeded this limit. This caused the database to become unresponsive underload.
+Resolution:
+The resolution involved reverting the database connection settings to their previous stable configuration. The maximum connections parameter was increased to accommodate peak traffic, and extensive testing was conducted to ensure the settings were optimal. The fix was deployed, and normal operation resumed.
+Corrective and Preventative Measures
+Improvements:
+Review Configuration Changes: Establish a stricter review process for configuration changes, especially those related to database settings.
+Automated Testing: Implement automated testing for configuration changes to detect issues before they affect production.
+Enhanced Monitoring: Upgrade monitoring systems to provide more granular alerts on database performance metrics, such as connection saturation.
+Documentation: Update the documentation for maintenance procedures to include detailed steps for verifying connection settings.
+Tasks:
+Patch Database Configuration:
+Increase maximum connections parameter.
+Implement automated rollback procedures for failed updates.
+Implement Pre-Deployment Testing:
+Set up a staging environment that mimics production for testing configuration changes.
+Automate stress tests to validate changes under load.
+Enhance Monitoring:
+Add alerts for connection pool metrics.
+Integrate anomaly detection for unusual database activity.
+Documentation Update:
+Revise maintenance update guidelines to include connection setting verification.
+Create a checklist for configuration change reviews.
+By addressing these areas, we aim to prevent similar incidents in the future and ensure smoother operation of our e-commerce platform.
+
+
+
+
